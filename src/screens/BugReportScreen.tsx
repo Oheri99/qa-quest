@@ -1,7 +1,10 @@
 import { useState } from "react";
 import "../styles/BugReportScreen.css";
 
-import { calculateBugScore } from "../utils/scoring";
+import {
+  calculateBugScore,
+} from "../utils/scoring";
+
 import { testCases } from "../data/testCases";
 
 import type { TestCase } from "../types/game";
@@ -23,7 +26,8 @@ function BugReportScreen({
   onSubmit,
   onBack,
 }: BugReportScreenProps) {
-  const [bugs, setBugs] = useState<BugReport[]>([]);
+  const [bugs, setBugs] =
+    useState<BugReport[]>([]);
 
   const [selectedTestId, setSelectedTestId] =
     useState("");
@@ -36,11 +40,20 @@ function BugReportScreen({
       "medium",
     );
 
+  /*
+   * Get the actual TestCase objects
+   * for the tests that failed during
+   * execution.
+   */
   const failedTestCases: TestCase[] =
     testCases.filter((test) =>
       failedTests.includes(test.id),
     );
 
+  /*
+   * Prevent the player from reporting
+   * the same failed test more than once.
+   */
   const reportedTestIds = bugs.map(
     (bug) => bug.testId,
   );
@@ -51,6 +64,9 @@ function BugReportScreen({
         !reportedTestIds.includes(test.id),
     );
 
+  /*
+   * Add a new bug report.
+   */
   const addBug = () => {
     if (
       !selectedTestId ||
@@ -75,21 +91,38 @@ function BugReportScreen({
     setSeverity("medium");
   };
 
+  /*
+   * Remove a previously added bug.
+   */
   const removeBug = (index: number) => {
     setBugs((current) =>
-      current.filter((_, i) => i !== index),
+      current.filter(
+        (_, i) => i !== index,
+      ),
     );
   };
 
+  /*
+   * Calculate the score for all
+   * submitted bug reports.
+   */
   const calculateTotalScore = () => {
     return bugs.reduce(
       (total, bug) =>
         total +
-        calculateBugScore(bug.severity),
+        calculateBugScore({
+          testId: bug.testId,
+          severity: bug.severity,
+          description: bug.description,
+        }),
       0,
     );
   };
 
+  /*
+   * Submit the bug reports and
+   * send the total XP back to App.tsx.
+   */
   const handleSubmit = () => {
     const totalScore =
       calculateTotalScore();
@@ -97,6 +130,9 @@ function BugReportScreen({
     onSubmit(totalScore);
   };
 
+  /*
+   * Find a test case using its ID.
+   */
   function getTestById(
     testId: string,
   ): TestCase | undefined {
@@ -109,6 +145,7 @@ function BugReportScreen({
     <div className="bug-report-screen">
       <div className="bug-report-container">
 
+        {/* Back */}
         <button
           className="back-button"
           onClick={onBack}
@@ -116,6 +153,7 @@ function BugReportScreen({
           ← Back
         </button>
 
+        {/* Header */}
         <h1>Bug Report</h1>
 
         <p className="subtitle">
@@ -123,9 +161,12 @@ function BugReportScreen({
           during test execution.
         </p>
 
+        {/* No bugs */}
         {failedTestCases.length === 0 ? (
           <div className="no-bugs-message">
-            <h2>🎉 No Bugs Detected</h2>
+            <h2>
+              🎉 No Bugs Detected
+            </h2>
 
             <p>
               None of the tests you selected
@@ -134,13 +175,19 @@ function BugReportScreen({
 
             <button
               className="submit-button"
-              onClick={() => onSubmit(0)}
+              onClick={() =>
+                onSubmit(0)
+              }
             >
               Continue to Automation
             </button>
           </div>
         ) : (
           <>
+            {/* =========================
+                DETECTED BUGS
+            ========================= */}
+
             <div className="detected-bugs">
               <h2>
                 🐛 Bugs Detected
@@ -183,12 +230,16 @@ function BugReportScreen({
               </div>
             </div>
 
-            <div className="bug-form">
+            {/* =========================
+                BUG FORM
+            ========================= */}
 
+            <div className="bug-form">
               <h2>
                 Report a Bug
               </h2>
 
+              {/* Failed test */}
               <div className="form-group">
                 <label htmlFor="test">
                   Failed Test
@@ -221,6 +272,7 @@ function BugReportScreen({
                 </select>
               </div>
 
+              {/* Test context */}
               {selectedTestId && (
                 <div className="test-context">
                   {(() => {
@@ -261,6 +313,7 @@ function BugReportScreen({
                 </div>
               )}
 
+              {/* Description */}
               <div className="form-group">
                 <label htmlFor="description">
                   Bug Description
@@ -279,6 +332,7 @@ function BugReportScreen({
                 />
               </div>
 
+              {/* Severity */}
               <div className="form-group">
                 <label htmlFor="severity">
                   Severity
@@ -310,6 +364,7 @@ function BugReportScreen({
                 </select>
               </div>
 
+              {/* Add bug */}
               <button
                 className="add-bug-button"
                 onClick={addBug}
@@ -322,9 +377,12 @@ function BugReportScreen({
               </button>
             </div>
 
+            {/* =========================
+                REPORTED BUGS
+            ========================= */}
+
             {bugs.length > 0 && (
               <div className="bugs-list">
-
                 <h2>
                   Reported Bugs (
                   {bugs.length})
@@ -346,13 +404,22 @@ function BugReportScreen({
                         bug.testId,
                       );
 
+                    const bugScore =
+                      calculateBugScore({
+                        testId:
+                          bug.testId,
+                        severity:
+                          bug.severity,
+                        description:
+                          bug.description,
+                      });
+
                     return (
                       <div
                         key={`${bug.testId}-${index}`}
                         className={`bug-item severity-${bug.severity}`}
                       >
                         <div className="bug-header">
-
                           <div>
                             <span className="severity-badge">
                               {bug.severity.toUpperCase()}
@@ -384,11 +451,7 @@ function BugReportScreen({
                         </p>
 
                         <div className="bug-score">
-                          +
-                          {calculateBugScore(
-                            bug.severity,
-                          )}{" "}
-                          points
+                          +{bugScore} points
                         </div>
                       </div>
                     );
@@ -396,6 +459,10 @@ function BugReportScreen({
                 )}
               </div>
             )}
+
+            {/* =========================
+                SUBMIT
+            ========================= */}
 
             <div className="report-actions">
               <button
