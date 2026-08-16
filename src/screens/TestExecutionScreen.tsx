@@ -1,74 +1,8 @@
 import { useState } from "react";
 import "../styles/TestExecutionScreen.css";
-import type { TestCase } from "../types/game";
 
-const SAMPLE_TESTS: TestCase[] = [
-  {
-    id: "test-1",
-    name: "Valid Login",
-    description: "User logs in with correct credentials",
-    steps: [
-      "Navigate to login page",
-      "Enter username",
-      "Enter password",
-      "Click login",
-    ],
-    expectedResult: "User is redirected to dashboard",
-    hasBug: false,
-  },
-  {
-    id: "test-2",
-    name: "Invalid Password",
-    description: "User attempts login with wrong password",
-    steps: [
-      "Navigate to login page",
-      "Enter correct username",
-      "Enter incorrect password",
-      "Click login",
-    ],
-    expectedResult: "Error message displayed",
-    hasBug: true,
-    severity: "high",
-  },
-  {
-    id: "test-3",
-    name: "Empty Username",
-    description: "User attempts login with empty username",
-    steps: [
-      "Navigate to login page",
-      "Leave username empty",
-      "Enter password",
-      "Click login",
-    ],
-    expectedResult: "Validation error shown",
-    hasBug: false,
-  },
-  {
-    id: "test-4",
-    name: "Session Timeout",
-    description: "Verify session handling after timeout",
-    steps: [
-      "Log in successfully",
-      "Wait for session timeout",
-      "Attempt action",
-    ],
-    expectedResult: "User redirected to login",
-    hasBug: true,
-    severity: "medium",
-  },
-  {
-    id: "test-5",
-    name: "SQL Injection Prevention",
-    description: "Test SQL injection protection",
-    steps: [
-      "Navigate to login",
-      "Enter SQL injection payload",
-      "Attempt login",
-    ],
-    expectedResult: "Attack blocked, normal error shown",
-    hasBug: false,
-  },
-];
+import type { TestCase } from "../types/game";
+import { testCases } from "../data/testCases";
 
 interface TestExecutionScreenProps {
   selectedTests: string[];
@@ -87,120 +21,254 @@ function TestExecutionScreen({
   onReport,
   onBack,
 }: TestExecutionScreenProps) {
-  const [expandedTest, setExpandedTest] = useState<string | null>(null);
+  const [expandedTest, setExpandedTest] =
+    useState<string | null>(null);
 
-  const testsToRun = SAMPLE_TESTS.filter((t) =>
-    selectedTests.includes(t.id),
+  /*
+   * Only show the tests selected
+   * during test planning.
+   */
+  const testsToRun = testCases.filter((test) =>
+    selectedTests.includes(test.id),
   );
 
-  const getTestStatus = (testId: string) => {
-    if (!executedTests.includes(testId)) return "pending";
-    return failedTests.includes(testId) ? "failed" : "passed";
-  };
+  function getTestStatus(
+    testId: string,
+  ): "pending" | "failed" | "passed" {
+    if (!executedTests.includes(testId)) {
+      return "pending";
+    }
+
+    return failedTests.includes(testId)
+      ? "failed"
+      : "passed";
+  }
+
+  const allTestsExecuted =
+    testsToRun.length > 0 &&
+    testsToRun.every((test) =>
+      executedTests.includes(test.id),
+    );
 
   return (
     <div className="execution-screen">
       <div className="execution-container">
-        <button className="back-button" onClick={onBack}>
+
+        <button
+          className="back-button"
+          onClick={onBack}
+        >
           ← Back
         </button>
 
         <h1>Test Execution</h1>
-        <p className="subtitle">Run your test cases and identify bugs</p>
+
+        <p className="subtitle">
+          Run your test cases and identify bugs
+        </p>
+
+        {/* =========================
+            EXECUTION STATS
+        ========================= */}
 
         <div className="execution-stats">
+
           <div className="stat">
-            <span className="stat-label">Total:</span>
-            <span className="stat-value">{testsToRun.length}</span>
+            <span className="stat-label">
+              Total:
+            </span>
+
+            <span className="stat-value">
+              {testsToRun.length}
+            </span>
           </div>
+
           <div className="stat">
-            <span className="stat-label">Executed:</span>
-            <span className="stat-value">{executedTests.length}</span>
+            <span className="stat-label">
+              Executed:
+            </span>
+
+            <span className="stat-value">
+              {executedTests.length}
+            </span>
           </div>
+
           <div className="stat">
-            <span className="stat-label">Failed:</span>
-            <span className="stat-value" style={{ color: "var(--error)" }}>
+            <span className="stat-label">
+              Failed:
+            </span>
+
+            <span className="stat-value">
               {failedTests.length}
             </span>
           </div>
+
         </div>
 
+        {/* =========================
+            TEST RESULTS
+        ========================= */}
+
         <div className="test-results">
+
           {testsToRun.map((test) => {
-            const status = getTestStatus(test.id);
+
+            const status =
+              getTestStatus(test.id);
+
+            const isExecuted =
+              executedTests.includes(
+                test.id,
+              );
+
+            const isExpanded =
+              expandedTest === test.id;
+
             return (
-              <div key={test.id} className={`result-item ${status}`}>
+              <div
+                key={test.id}
+                className={`result-item ${status}`}
+              >
+
+                {/* =========================
+                    RESULT HEADER
+                ========================= */}
+
                 <div
                   className="result-header"
                   onClick={() =>
                     setExpandedTest(
-                      expandedTest === test.id ? null : test.id,
+                      isExpanded
+                        ? null
+                        : test.id,
                     )
                   }
                 >
-                  <div className="status-badge">{status.toUpperCase()}</div>
-                  <div className="result-title">
-                    <h3>{test.name}</h3>
-                    <p>{test.description}</p>
+
+                  <div className="status-badge">
+                    {status.toUpperCase()}
                   </div>
+
+                  <div className="result-title">
+
+                    <h3>
+                      {test.id} — {test.title}
+                    </h3>
+
+                    <p>
+                      {test.description}
+                    </p>
+
+                  </div>
+
                   <div className="result-actions">
-                    {!executedTests.includes(test.id) && (
+
+                    {!isExecuted && (
                       <button
                         className="run-button"
-                        onClick={(e) => {
-                          e.stopPropagation();
+                        onClick={(event) => {
+                          event.stopPropagation();
                           onRunTest(test);
                         }}
                       >
                         Run Test
                       </button>
                     )}
+
                     <span className="expand-icon">
-                      {expandedTest === test.id ? "▼" : "▶"}
+                      {isExpanded
+                        ? "▼"
+                        : "▶"}
                     </span>
+
                   </div>
+
                 </div>
 
-                {expandedTest === test.id && (
+                {/* =========================
+                    TEST DETAILS
+                ========================= */}
+
+                {isExpanded && (
                   <div className="result-details">
-                    <div className="steps">
-                      <h4>Test Steps:</h4>
-                      <ol>
-                        {test.steps.map((step, idx) => (
-                          <li key={idx}>{step}</li>
-                        ))}
-                      </ol>
-                    </div>
+
+                    {/* Expected */}
+
                     <div className="expected">
-                      <h4>Expected Result:</h4>
-                      <p>{test.expectedResult}</p>
+
+                      <h4>
+                        Expected Result:
+                      </h4>
+
+                      <p>
+                        {test.expected}
+                      </p>
+
                     </div>
-                    {executedTests.includes(test.id) && (
-                      <div className={`actual ${status}`}>
-                        <h4>Actual Result:</h4>
+
+                    {/* Actual */}
+
+                    {isExecuted && (
+                      <div
+                        className={`actual ${status}`}
+                      >
+
+                        <h4>
+                          Actual Result:
+                        </h4>
+
                         <p>
-                          {status === "failed"
-                            ? "❌ Test failed - bug detected!"
-                            : "✅ Test passed - no issues found"}
+                          {test.actual ??
+                            (status ===
+                            "failed"
+                              ? "Login failed and the user remained on the login page."
+                              : "Test passed successfully.")}
                         </p>
+
                       </div>
                     )}
+
+                    {/* Priority */}
+
+                    <div className="expected">
+
+                      <h4>
+                        Priority:
+                      </h4>
+
+                      <p>
+                        {test.priority.toUpperCase()}
+                      </p>
+
+                    </div>
+
                   </div>
                 )}
+
               </div>
             );
           })}
+
         </div>
 
+        {/* =========================
+            ACTIONS
+        ========================= */}
+
         <div className="execution-actions">
+
           <button
             className="report-button"
             onClick={onReport}
-            disabled={executedTests.length === 0}
+            disabled={
+              !allTestsExecuted
+            }
           >
             Review & Report Bugs
           </button>
+
         </div>
+
       </div>
     </div>
   );

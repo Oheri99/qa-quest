@@ -102,12 +102,7 @@
   align-items: center;
   gap: 15px;
   padding: 20px;
-  cursor: pointer;
   user-select: none;
-}
-
-.result-header:hover {
-  background: rgba(0, 0, 0, 0.02);
 }
 
 .status-badge {
@@ -184,11 +179,13 @@
   border-top: 1px solid #eee;
 }
 
-.steps, .expected, .actual {
+.expected,
+.actual {
   margin-bottom: 20px;
 }
 
-.steps:last-child, .expected:last-child, .actual:last-child {
+.expected:last-child,
+.actual:last-child {
   margin-bottom: 0;
 }
 
@@ -200,17 +197,8 @@
   font-weight: 600;
 }
 
-.steps ol {
-  margin: 0;
-  padding-left: 20px;
-}
-
-.steps li {
-  margin: 5px 0;
-  color: #555;
-}
-
-.expected p, .actual p {
+.expected p,
+.actual p {
   margin: 0;
   color: #555;
   line-height: 1.5;
@@ -221,6 +209,28 @@
 }
 
 .actual.failed p {
+  color: #c62828;
+}
+
+.priority {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75em;
+  font-weight: 700;
+}
+
+.priority.low {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.priority.medium {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.priority.high {
+  background: #ffebee;
   color: #c62828;
 }
 

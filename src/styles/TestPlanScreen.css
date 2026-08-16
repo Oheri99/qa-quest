@@ -124,24 +124,28 @@
   font-weight: 600;
 }
 
-.severity {
+/* =========================
+   PRIORITY
+========================= */
+
+.priority {
   padding: 3px 8px;
   border-radius: 4px;
   font-size: 0.75em;
   font-weight: 700;
 }
 
-.severity.low {
+.priority.low {
   background: #e8f5e9;
   color: #2e7d32;
 }
 
-.severity.medium {
+.priority.medium {
   background: #fff3e0;
   color: #e65100;
 }
 
-.severity.high {
+.priority.high {
   background: #ffebee;
   color: #c62828;
 }

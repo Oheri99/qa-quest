@@ -10,7 +10,7 @@ export const testCases: TestCase[] = [
       "User should be authenticated and redirected to the Dashboard.",
     actual:
       "Login fails and the user remains on the login page.",
-    xp: 30,
+    xp: 20,
     priority: "high",
     hasBug: true,
   },
@@ -22,10 +22,9 @@ export const testCases: TestCase[] = [
       "Verify invalid credentials are rejected.",
     expected:
       "User should receive an appropriate error message.",
-    actual:
-      "Invalid credentials error is displayed.",
-    xp: 20,
-    priority: "high",
+    xp: 10,
+    priority: "medium",
+    hasBug: false,
   },
 
   {
@@ -35,10 +34,9 @@ export const testCases: TestCase[] = [
       "Verify an invalid email cannot log in.",
     expected:
       "User should be prevented from logging in.",
-    actual:
-      "User remains on the login page.",
-    xp: 20,
-    priority: "high",
+    xp: 10,
+    priority: "medium",
+    hasBug: false,
   },
 
   {
@@ -48,10 +46,9 @@ export const testCases: TestCase[] = [
       "Verify the email field is required.",
     expected:
       "A validation message should tell the user that email is required.",
-    actual:
-      "Email required validation is displayed.",
     xp: 10,
-    priority: "medium",
+    priority: "high",
+    hasBug: false,
   },
 
   {
@@ -61,10 +58,9 @@ export const testCases: TestCase[] = [
       "Verify the password field is required.",
     expected:
       "A validation message should tell the user that password is required.",
-    actual:
-      "Password required validation is displayed.",
     xp: 10,
-    priority: "medium",
+    priority: "high",
+    hasBug: false,
   },
 
   {
@@ -74,10 +70,9 @@ export const testCases: TestCase[] = [
       "Verify the form handles missing credentials.",
     expected:
       "The form should prevent submission and display validation messages.",
-    actual:
-      "Validation messages are displayed.",
     xp: 10,
     priority: "medium",
+    hasBug: false,
   },
 
   {
@@ -87,10 +82,9 @@ export const testCases: TestCase[] = [
       "Verify the application handles long input safely.",
     expected:
       "The application should handle the input without crashing.",
-    actual:
-      "Application handles the input without crashing.",
     xp: 5,
     priority: "low",
+    hasBug: false,
   },
 
   {
@@ -100,9 +94,8 @@ export const testCases: TestCase[] = [
       "Verify malicious input is handled safely.",
     expected:
       "The application should safely reject malicious input.",
-    actual:
-      "Malicious input is safely rejected.",
-    xp: 10,
+    xp: 5,
     priority: "high",
+    hasBug: false,
   },
 ];
