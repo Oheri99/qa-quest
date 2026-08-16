@@ -1,0 +1,263 @@
+.bug-report-screen {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 40px 20px;
+}
+
+.bug-report-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.bug-report-screen h1 {
+  color: white;
+  font-size: 2.5em;
+  margin: 0 0 10px 0;
+}
+
+.subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1em;
+  margin: 0 0 30px 0;
+}
+
+.back-button {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid white;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 600;
+  transition: all 0.3s;
+  margin-bottom: 30px;
+}
+
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateX(-5px);
+}
+
+.bug-form {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  margin-bottom: 30px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 10px;
+  color: #333;
+  font-weight: 600;
+  font-size: 1em;
+}
+
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #eee;
+  border-radius: 6px;
+  font-size: 1em;
+  font-family: inherit;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.add-bug-button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 20px;
+}
+
+.add-bug-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+}
+
+.bugs-list {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  margin-bottom: 30px;
+}
+
+.bugs-list h2 {
+  margin: 0 0 15px 0;
+  color: #333;
+}
+
+.score-display {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.score-display p {
+  margin: 0;
+  font-weight: 600;
+  color: #333;
+}
+
+.points {
+  color: #667eea;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.bug-item {
+  background: #f9f9f9;
+  border-left: 4px solid #ccc;
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+.bug-item.severity-low {
+  border-left-color: #2e7d32;
+  background: #f1f8f5;
+}
+
+.bug-item.severity-medium {
+  border-left-color: #e65100;
+  background: #fff8f3;
+}
+
+.bug-item.severity-high {
+  border-left-color: #c62828;
+  background: #fef3f3;
+}
+
+.bug-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.severity-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.75em;
+  font-weight: 700;
+}
+
+.bug-item.severity-low .severity-badge {
+  background: #c8e6c9;
+  color: #2e7d32;
+}
+
+.bug-item.severity-medium .severity-badge {
+  background: #ffe0b2;
+  color: #e65100;
+}
+
+.bug-item.severity-high .severity-badge {
+  background: #ffcdd2;
+  color: #c62828;
+}
+
+.remove-button {
+  background: none;
+  border: none;
+  color: #999;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.remove-button:hover {
+  color: #666;
+}
+
+.bug-description {
+  margin: 10px 0;
+  color: #555;
+  line-height: 1.5;
+}
+
+.bug-score {
+  font-size: 0.9em;
+  font-weight: 600;
+  color: #667eea;
+}
+
+.report-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.submit-button {
+  padding: 15px 40px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.submit-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+}
+
+.submit-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+  .bug-report-screen h1 {
+    font-size: 1.8em;
+  }
+
+  .bug-form,
+  .bugs-list {
+    padding: 20px;
+  }
+
+  .score-display {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
