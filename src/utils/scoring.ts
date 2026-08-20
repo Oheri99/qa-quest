@@ -7,15 +7,19 @@ export type BugSeverity =
 
 export interface BugScoreInput {
   testId: string;
+  title?: string;
   severity: BugSeverity;
   description: string;
+  steps?: string;
+  expected?: string;
+  actual?: string;
 }
 
-/**
+/*
  * Calculate test planning score.
  *
- * Each selected test contributes its
- * predefined XP value.
+ * Each selected test contributes
+ * its predefined XP value.
  */
 export function calculatePlanScore(
   selectedTests: string[],
@@ -32,13 +36,20 @@ export function calculatePlanScore(
   );
 }
 
-/**
+/*
  * Calculate bug report score.
  *
- * Points are awarded for:
- * - Reporting a real failed test
- * - Choosing an appropriate severity
- * - Providing a useful description
+ * Maximum: 100 points per bug.
+ *
+ * Points:
+ *
+ * Correct bug identified: 30
+ * Appropriate severity:   20
+ * Useful bug title:        10
+ * Useful description:      10
+ * Reproduction steps:      10
+ * Expected result:         10
+ * Actual result:           10
  */
 export function calculateBugScore(
   bug: BugScoreInput,
@@ -47,48 +58,109 @@ export function calculateBugScore(
     (item) => item.id === bug.testId,
   );
 
+  /*
+   * Unknown test IDs receive no score.
+   */
   if (!test) {
     return 0;
   }
 
-  // Only real bugs can receive bug-report XP.
+  /*
+   * Only real bugs can receive
+   * bug-report XP.
+   */
   if (!test.hasBug) {
     return 0;
   }
 
   let score = 0;
 
-  // Correctly identifying the failed test.
+  /*
+   * Correctly identifying a real bug.
+   */
   score += 30;
 
-  // Severity scoring.
+  /*
+   * Severity.
+   *
+   * The maximum severity score is 20.
+   */
   const severityScores: Record<
     BugSeverity,
     number
   > = {
-    low: 10,
-    medium: 20,
-    high: 30,
+    low: 5,
+    medium: 10,
+    high: 20,
   };
 
   score += severityScores[bug.severity];
 
-  // Reward a meaningful description.
+  /*
+   * Useful bug title.
+   */
+  const titleLength =
+    bug.title?.trim().length ?? 0;
+
+  if (titleLength >= 15) {
+    score += 10;
+  } else if (titleLength >= 5) {
+    score += 5;
+  }
+
+  /*
+   * Useful bug description.
+   */
   const descriptionLength =
     bug.description.trim().length;
 
-  if (descriptionLength >= 20) {
-    score += 20;
-  } else if (descriptionLength >= 10) {
+  if (descriptionLength >= 40) {
     score += 10;
+  } else if (descriptionLength >= 20) {
+    score += 5;
   }
 
-  return score;
+  /*
+   * Reproduction steps.
+   */
+  const stepsLength =
+    bug.steps?.trim().length ?? 0;
+
+  if (stepsLength >= 40) {
+    score += 10;
+  } else if (stepsLength >= 20) {
+    score += 5;
+  }
+
+  /*
+   * Expected result.
+   */
+  const expectedLength =
+    bug.expected?.trim().length ?? 0;
+
+  if (expectedLength >= 15) {
+    score += 10;
+  } else if (expectedLength >= 5) {
+    score += 5;
+  }
+
+  /*
+   * Actual result.
+   */
+  const actualLength =
+    bug.actual?.trim().length ?? 0;
+
+  if (actualLength >= 15) {
+    score += 10;
+  } else if (actualLength >= 5) {
+    score += 5;
+  }
+
+  return Math.min(score, 100);
 }
 
-/**
- * Calculate the total score for
- * multiple bug reports.
+/*
+ * Calculate total bug-report score.
  */
 export function calculateTotalBugScore(
   bugs: BugScoreInput[],
@@ -100,20 +172,31 @@ export function calculateTotalBugScore(
   );
 }
 
-/**
- * Calculate automation score based
- * on test coverage.
+/*
+ * Calculate automation score.
+ *
+ * Base score: 50
+ * Coverage bonus: up to 50
+ * Maximum: 100
  */
 export function calculateAutomationScore(
   automatedTestCount: number,
   totalTestCount: number,
 ): number {
-  if (totalTestCount === 0) {
+  if (totalTestCount <= 0) {
     return 0;
   }
 
+  const safeAutomatedCount = Math.max(
+    0,
+    Math.min(
+      automatedTestCount,
+      totalTestCount,
+    ),
+  );
+
   const coverage =
-    automatedTestCount / totalTestCount;
+    safeAutomatedCount / totalTestCount;
 
   return (
     50 +
@@ -121,8 +204,8 @@ export function calculateAutomationScore(
   );
 }
 
-/**
- * Calculate the final QA Quest score.
+/*
+ * Calculate final QA Quest score.
  */
 export function calculateFinalScore(
   planScore: number,

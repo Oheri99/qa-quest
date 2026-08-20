@@ -1,6 +1,6 @@
 .mission-screen {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: white;
   padding: 40px 20px;
 }
 
@@ -10,7 +10,7 @@
 }
 
 .back-button {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.927);
   color: white;
   border: 2px solid white;
   padding: 10px 20px;

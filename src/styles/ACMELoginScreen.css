@@ -1,0 +1,194 @@
+.acme-login-screen {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 20px;
+  box-sizing: border-box;
+  background:
+    linear-gradient(
+      135deg,
+      #111827 0%,
+      #1e3a5f 50%,
+      #2563eb 100%
+    );
+}
+
+.acme-login-card {
+  width: 100%;
+  max-width: 430px;
+  padding: 40px;
+  box-sizing: border-box;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.acme-back-button {
+  border: none;
+  background: transparent;
+  color: #475569;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 30px;
+}
+
+.acme-back-button:hover {
+  color: #2563eb;
+}
+
+.acme-logo {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px;
+  border-radius: 16px;
+  background: #eff6ff;
+  font-size: 30px;
+}
+
+.acme-login-card h1 {
+  text-align: center;
+  margin: 0;
+  color: #111827;
+  font-size: 28px;
+  letter-spacing: 2px;
+}
+
+.acme-login-card h2 {
+  text-align: center;
+  margin: 25px 0 8px;
+  color: #1f2937;
+  font-size: 24px;
+}
+
+.acme-subtitle {
+  text-align: center;
+  color: #64748b;
+  margin-bottom: 30px;
+}
+
+.acme-form-group {
+  margin-bottom: 20px;
+}
+
+.acme-form-group label {
+  display: block;
+  margin-bottom: 7px;
+  color: #334155;
+  font-weight: 600;
+}
+
+.acme-form-group input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  font-size: 16px;
+}
+
+.acme-form-group input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  padding-right: 70px;
+}
+
+.show-password-button {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  color: #2563eb;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.acme-error {
+  margin-bottom: 18px;
+  padding: 12px;
+  border-radius: 6px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+  font-size: 14px;
+}
+
+.acme-login-button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 7px;
+  background: #2563eb;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.acme-login-button:hover {
+  background: #1d4ed8;
+}
+
+.acme-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.acme-links button {
+  border: none;
+  background: transparent;
+  color: #2563eb;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.acme-demo-info {
+  margin-top: 30px;
+  padding: 15px;
+  border-radius: 8px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  text-align: center;
+  color: #475569;
+  font-size: 13px;
+}
+
+.acme-demo-info strong {
+  color: #1e293b;
+}
+
+.acme-demo-info p {
+  margin: 5px 0;
+}
+
+@media (max-width: 600px) {
+  .acme-login-card {
+    padding: 25px;
+  }
+
+  .acme-login-card h1 {
+    font-size: 23px;
+  }
+
+  .acme-login-card h2 {
+    font-size: 20px;
+  }
+}

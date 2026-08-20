@@ -1,9 +1,11 @@
 import "../styles/TestPlanScreen.css";
 import { testCases } from "../data/testCases";
+import type { TestCase } from "../types/game";
 
 interface TestPlanScreenProps {
   selectedTests: string[];
   onToggle: (testId: string) => void;
+  onSelectAll: () => void;
   onExecute: () => void;
   onBack: () => void;
 }
@@ -11,19 +13,21 @@ interface TestPlanScreenProps {
 function TestPlanScreen({
   selectedTests,
   onToggle,
+  onSelectAll,
   onExecute,
   onBack,
 }: TestPlanScreenProps) {
   const bugCount = testCases.filter(
-    (test) => test.hasBug,
+    (test: TestCase) => test.hasBug,
   ).length;
 
   const selectedXp = testCases
-    .filter((test) =>
+    .filter((test: TestCase) =>
       selectedTests.includes(test.id),
     )
     .reduce(
-      (total, test) => total + test.xp,
+      (total: number, test: TestCase) =>
+        total + test.xp,
       0,
     );
 
@@ -32,6 +36,7 @@ function TestPlanScreen({
       <div className="test-plan-container">
 
         <button
+          type="button"
           className="back-button"
           onClick={onBack}
         >
@@ -44,6 +49,16 @@ function TestPlanScreen({
           Select the scenarios you believe
           should be tested before release.
         </p>
+
+        <button
+          type="button"
+          className="select-all-button"
+          onClick={onSelectAll}
+        >
+          {selectedTests.length === testCases.length
+            ? "Deselect All Tests"
+            : "Select All Tests"}
+        </button>
 
         <div className="plan-info">
 
@@ -75,7 +90,7 @@ function TestPlanScreen({
 
         <div className="tests-list">
 
-          {testCases.map((test) => {
+          {testCases.map((test: TestCase) => {
 
             const selected =
               selectedTests.includes(test.id);
@@ -137,6 +152,7 @@ function TestPlanScreen({
         <div className="plan-actions">
 
           <button
+            type="button"
             className="execute-button"
             onClick={onExecute}
             disabled={

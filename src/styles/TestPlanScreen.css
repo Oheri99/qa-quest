@@ -39,6 +39,24 @@
   margin: 0 0 30px 0;
 }
 
+.select-all-button {
+  margin-bottom: 20px;
+  padding: 10px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.16);
+  color: white;
+  font-size: 0.95em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.select-all-button:hover {
+  background: rgba(255, 255, 255, 0.28);
+  transform: translateY(-1px);
+}
+
 .plan-info {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));

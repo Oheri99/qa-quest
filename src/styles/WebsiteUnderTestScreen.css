@@ -1,0 +1,915 @@
+.website-screen {
+  min-height: 100vh;
+  background:
+    radial-gradient(
+      circle at top left,
+      #263b70 0%,
+      transparent 35%
+    ),
+    #0f172a;
+
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+.website-container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* =========================
+   BACK BUTTON
+   ========================= */
+
+.website-back-button {
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.25);
+
+  padding: 10px 18px;
+
+  border-radius: 7px;
+
+  cursor: pointer;
+
+  font-weight: 600;
+
+  margin-bottom: 25px;
+}
+
+.website-back-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* =========================
+   HEADER
+   ========================= */
+
+.website-header {
+  color: white;
+  margin-bottom: 25px;
+}
+
+.application-status {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  color: #86efac;
+
+  font-size: 0.75rem;
+
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: #22c55e;
+
+  box-shadow:
+    0 0 10px
+    rgba(34, 197, 94, 0.8);
+}
+
+.website-header h1 {
+  font-size: 2.7rem;
+
+  margin: 10px 0 5px;
+}
+
+.website-header p {
+  color: #cbd5e1;
+
+  font-size: 1.05rem;
+
+  margin: 0;
+}
+
+/* =========================
+   BROWSER
+   ========================= */
+
+.browser-window {
+  overflow: hidden;
+
+  background: white;
+
+  border-radius: 14px;
+
+  box-shadow:
+    0 25px 70px
+    rgba(0, 0, 0, 0.45);
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.08);
+}
+
+/* =========================
+   BROWSER TOOLBAR
+   ========================= */
+
+.browser-toolbar {
+  height: 52px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 0 15px;
+
+  box-sizing: border-box;
+
+  background: #e2e8f0;
+
+  border-bottom: 1px solid
+    #cbd5e1;
+}
+
+.browser-dots {
+  display: flex;
+
+  gap: 7px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+
+  border-radius: 50%;
+
+  display: block;
+}
+
+.dot.red {
+  background: #ef4444;
+}
+
+.dot.yellow {
+  background: #f59e0b;
+}
+
+.dot.green {
+  background: #22c55e;
+}
+
+.address-bar {
+  flex: 1;
+
+  max-width: 700px;
+
+  background: white;
+
+  border: 1px solid #cbd5e1;
+
+  border-radius: 7px;
+
+  padding: 8px 14px;
+
+  color: #475569;
+
+  font-family: monospace;
+
+  font-size: 0.9rem;
+}
+
+/* =========================
+   ACME APPLICATION
+   ========================= */
+
+.acme-application {
+  min-height: 560px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 45px 20px;
+
+  box-sizing: border-box;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f8fafc,
+      #eef2ff
+    );
+}
+
+.acme-brand {
+  font-size: 1.7rem;
+
+  font-weight: 900;
+
+  letter-spacing: 2px;
+
+  color: #3730a3;
+
+  margin-bottom: 22px;
+}
+
+.acme-brand span {
+  color: #64748b;
+
+  margin-left: 6px;
+
+  font-weight: 700;
+}
+
+/* =========================
+   LOGIN CARD
+   ========================= */
+
+.login-card {
+  width: 100%;
+
+  max-width: 410px;
+
+  background: white;
+
+  padding: 35px;
+
+  box-sizing: border-box;
+
+  border-radius: 14px;
+
+  box-shadow:
+    0 15px 40px
+    rgba(15, 23, 42, 0.12);
+
+  border: 1px solid
+    #e2e8f0;
+}
+
+.login-icon {
+  width: 55px;
+  height: 55px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto 15px;
+
+  background: #eef2ff;
+
+  border-radius: 50%;
+
+  font-size: 1.6rem;
+}
+
+.login-card h2 {
+  text-align: center;
+
+  color: #1e293b;
+
+  font-size: 1.65rem;
+
+  margin: 0 0 8px;
+}
+
+.login-subtitle {
+  text-align: center;
+
+  color: #64748b;
+
+  margin: 0 0 25px;
+
+  line-height: 1.5;
+}
+
+/* =========================
+   FORM
+   ========================= */
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+
+  color: #334155;
+
+  font-weight: 700;
+
+  margin-bottom: 7px;
+
+  font-size: 0.9rem;
+}
+
+.form-group input {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 12px 13px;
+
+  border: 1px solid #cbd5e1;
+
+  border-radius: 7px;
+
+  color: #1e293b;
+
+  background: white;
+
+  font-size: 1rem;
+
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.form-group input:focus {
+  outline: none;
+
+  border-color: #6366f1;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(99, 102, 241, 0.12);
+}
+
+/* =========================
+   PASSWORD
+   ========================= */
+
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  padding-right: 65px;
+}
+
+.show-password-button {
+  position: absolute;
+
+  right: 8px;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  border: none;
+
+  background: transparent;
+
+  color: #4f46e5;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  padding: 5px;
+}
+
+.show-password-button:hover {
+  color: #3730a3;
+}
+
+/* =========================
+   FIELD ERROR
+   ========================= */
+
+.field-error {
+  margin: 6px 0 0;
+
+  color: #dc2626;
+
+  font-size: 0.85rem;
+
+  font-weight: 600;
+}
+
+/* =========================
+   LOGIN BUTTON
+   ========================= */
+
+.login-button {
+  width: 100%;
+
+  margin-top: 5px;
+
+  padding: 13px;
+
+  border: none;
+
+  border-radius: 7px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #4f46e5,
+      #6366f1
+    );
+
+  color: white;
+
+  font-size: 1rem;
+
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s;
+}
+
+.login-button:hover {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 6px 15px
+    rgba(79, 70, 229, 0.25);
+}
+
+.login-button:active {
+  transform: translateY(0);
+}
+
+/* =========================
+   LOGIN ERROR
+   ========================= */
+
+.login-error {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-top: 15px;
+
+  padding: 11px 12px;
+
+  border-radius: 7px;
+
+  background: #fef2f2;
+
+  border: 1px solid #fecaca;
+
+  color: #dc2626;
+
+  font-size: 0.9rem;
+
+  font-weight: 600;
+}
+
+.login-error span {
+  font-size: 1rem;
+}
+
+/* =========================
+   LOGIN LINKS
+   ========================= */
+
+.login-links {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 9px;
+
+  margin-top: 22px;
+
+  font-size: 0.88rem;
+}
+
+.login-links button {
+  border: none;
+
+  background: transparent;
+
+  color: #4f46e5;
+
+  cursor: pointer;
+
+  padding: 0;
+
+  font-size: inherit;
+
+  font-weight: 600;
+}
+
+.login-links button:hover {
+  text-decoration: underline;
+}
+
+.login-links span {
+  color: #94a3b8;
+}
+
+/* =========================
+   INVESTIGATION PANEL
+   ========================= */
+
+.investigation-panel {
+  margin-top: 25px;
+
+  background: #1e293b;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.08);
+
+  border-radius: 12px;
+
+  padding: 25px;
+
+  color: white;
+}
+
+.investigation-header {
+  display: flex;
+
+  gap: 15px;
+
+  align-items: flex-start;
+
+  margin-bottom: 22px;
+}
+
+.investigation-icon {
+  font-size: 1.7rem;
+}
+
+.investigation-header h2 {
+  margin: 0 0 5px;
+
+  font-size: 1.25rem;
+}
+
+.investigation-header p {
+  margin: 0;
+
+  color: #94a3b8;
+}
+
+/* =========================
+   INVESTIGATION GRID
+   ========================= */
+
+.investigation-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 12px;
+}
+
+.investigation-item {
+  display: flex;
+
+  gap: 12px;
+
+  padding: 15px;
+
+  background:
+    rgba(255, 255, 255, 0.04);
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.06);
+
+  border-radius: 8px;
+}
+
+.investigation-item > span {
+  width: 27px;
+  height: 27px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #4f46e5;
+
+  font-weight: 800;
+
+  font-size: 0.85rem;
+}
+
+.investigation-item strong {
+  display: block;
+
+  margin-bottom: 4px;
+}
+
+.investigation-item p {
+  margin: 0;
+
+  color: #94a3b8;
+
+  font-size: 0.9rem;
+
+  line-height: 1.4;
+}
+
+/* =========================
+   TEST CREDENTIALS
+   ========================= */
+
+.test-credentials {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  flex-wrap: wrap;
+
+  margin-top: 20px;
+
+  padding: 13px;
+
+  background:
+    rgba(79, 70, 229, 0.12);
+
+  border: 1px solid
+    rgba(99, 102, 241, 0.2);
+
+  border-radius: 8px;
+
+  color: #c7d2fe;
+
+  font-size: 0.85rem;
+}
+
+.test-credentials strong {
+  margin-right: 5px;
+}
+
+.test-credentials code {
+  background: #0f172a;
+
+  padding: 5px 8px;
+
+  border-radius: 5px;
+
+  color: #a5b4fc;
+
+  font-family: monospace;
+}
+
+/* =========================
+   CONTINUE
+   ========================= */
+
+.continue-button {
+  display: block;
+
+  margin: 25px auto 0;
+
+  padding: 14px 25px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #4f46e5,
+      #7c3aed
+    );
+
+  color: white;
+
+  font-size: 1rem;
+
+  font-weight: 800;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 20px
+    rgba(79, 70, 229, 0.25);
+
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s;
+}
+
+.continue-button:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 12px 25px
+    rgba(79, 70, 229, 0.35);
+}
+
+/* =========================
+   DASHBOARD
+   ========================= */
+
+.dashboard-page {
+  min-height: 560px;
+
+  background: #f8fafc;
+}
+
+.dashboard-header {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 18px 25px;
+
+  background: white;
+
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.dashboard-header .acme-brand {
+  margin: 0;
+
+  font-size: 1.25rem;
+}
+
+.logout-button {
+  padding: 8px 15px;
+
+  border: 1px solid #cbd5e1;
+
+  border-radius: 6px;
+
+  background: white;
+
+  color: #475569;
+
+  cursor: pointer;
+
+  font-weight: 600;
+}
+
+.logout-button:hover {
+  background: #f1f5f9;
+}
+
+.dashboard-content {
+  min-height: 470px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 30px;
+}
+
+.success-icon {
+  width: 70px;
+  height: 70px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #dcfce7;
+
+  color: #16a34a;
+
+  font-size: 2rem;
+
+  font-weight: 900;
+
+  margin-bottom: 20px;
+}
+
+.dashboard-content h1 {
+  color: #1e293b;
+
+  margin: 0 0 10px;
+}
+
+.dashboard-content > p {
+  color: #64748b;
+
+  max-width: 500px;
+
+  line-height: 1.5;
+}
+
+.dashboard-card {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+
+  margin-top: 20px;
+
+  padding: 18px 25px;
+
+  background: white;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 8px;
+
+  min-width: 250px;
+}
+
+.dashboard-card strong {
+  color: #64748b;
+
+  font-size: 0.85rem;
+}
+
+.dashboard-card span {
+  color: #1e293b;
+
+  font-family: monospace;
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 700px) {
+  .website-screen {
+    padding: 25px 15px;
+  }
+
+  .website-header h1 {
+    font-size: 2rem;
+  }
+
+  .browser-toolbar {
+    height: 48px;
+  }
+
+  .address-bar {
+    font-size: 0.75rem;
+  }
+
+  .acme-application {
+    padding: 30px 15px;
+  }
+
+  .login-card {
+    padding: 25px 20px;
+  }
+
+  .investigation-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .test-credentials {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 450px) {
+  .website-header h1 {
+    font-size: 1.7rem;
+  }
+
+  .browser-dots {
+    display: none;
+  }
+
+  .login-card {
+    padding: 22px 16px;
+  }
+
+  .login-links {
+    flex-wrap: wrap;
+  }
+}

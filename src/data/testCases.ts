@@ -13,6 +13,11 @@ export const testCases: TestCase[] = [
     xp: 20,
     priority: "high",
     hasBug: true,
+    expectedSeverity: "high",
+    bugTitle:
+      "Valid credentials fail to authenticate the user",
+    bugDescription:
+      "A registered user enters valid credentials but authentication fails and the user remains on the login page.",
   },
 
   {
