@@ -3,11 +3,11 @@ import type { TestCase } from "../types/game";
 export const testCases: TestCase[] = [
   {
     id: "TC001",
-    title: "Valid email + valid password",
+    title: "Valid username + valid password",
     description:
-      "Verify a registered user can successfully log in.",
+      "Verify a registered user can successfully log in and reach the Products page.",
     expected:
-      "User should be authenticated and redirected to the Dashboard.",
+      "User should be authenticated and redirected to the Products page.",
     actual:
       "Login fails and the user remains on the login page.",
     xp: 20,
@@ -22,7 +22,7 @@ export const testCases: TestCase[] = [
 
   {
     id: "TC002",
-    title: "Valid email + invalid password",
+    title: "Valid username + invalid password",
     description:
       "Verify invalid credentials are rejected.",
     expected:
@@ -36,13 +36,13 @@ export const testCases: TestCase[] = [
 
   {
     id: "TC003",
-    title: "Invalid email + valid password",
+    title: "Invalid username + valid password",
     description:
-      "Verify an invalid email cannot log in.",
+      "Verify an invalid username cannot log in.",
     expected:
-      "User should be prevented from logging in.",
+      "User should be prevented from logging in and an appropriate error message should be displayed.",
     actual:
-      "The user is prevented from logging in.",
+      "The user is prevented from logging in and an appropriate error message is displayed.",
     xp: 10,
     priority: "medium",
     hasBug: false,
@@ -50,13 +50,13 @@ export const testCases: TestCase[] = [
 
   {
     id: "TC004",
-    title: "Empty email",
+    title: "Empty username",
     description:
-      "Verify the email field is required.",
+      "Verify the username field is required.",
     expected:
-      "A validation message should tell the user that email is required.",
+      "A validation message should tell the user that the username is required.",
     actual:
-      "The email validation message is displayed.",
+      "The username validation message is displayed.",
     xp: 10,
     priority: "high",
     hasBug: false,
@@ -68,7 +68,7 @@ export const testCases: TestCase[] = [
     description:
       "Verify the password field is required.",
     expected:
-      "A validation message should tell the user that password is required.",
+      "A validation message should tell the user that the password is required.",
     actual:
       "The password validation message is displayed.",
     xp: 10,
@@ -80,9 +80,9 @@ export const testCases: TestCase[] = [
     id: "TC006",
     title: "Both fields empty",
     description:
-      "Verify the form handles missing credentials.",
+      "Verify the login form handles missing credentials.",
     expected:
-      "The form should prevent submission and display validation messages.",
+      "The form should prevent submission and display validation messages for the required fields.",
     actual:
       "The form prevents submission and displays validation messages.",
     xp: 10,
@@ -94,9 +94,9 @@ export const testCases: TestCase[] = [
     id: "TC007",
     title: "Very long password",
     description:
-      "Verify the application handles long input safely.",
+      "Verify the application handles long password input safely.",
     expected:
-      "The application should handle the input without crashing.",
+      "The application should handle the long input without crashing.",
     actual:
       "The application accepts the long input without crashing.",
     xp: 5,
@@ -108,9 +108,9 @@ export const testCases: TestCase[] = [
     id: "TC008",
     title: "Security input",
     description:
-      "Verify malicious input is handled safely.",
+      "Verify potentially malicious input is handled safely.",
     expected:
-      "The application should safely reject malicious input.",
+      "The application should safely reject malicious input without executing it.",
     actual:
       "The application safely rejects the malicious input.",
     xp: 5,
